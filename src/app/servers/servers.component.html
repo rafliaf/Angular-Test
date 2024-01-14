@@ -1,49 +1,59 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <label for="">Server Name</label>
-            <!-- Pendekatan data binding (1) -->
-            <!-- <input 
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- Server -->
+      <label for="">Server Name</label>
+      <!-- Pendekatan data binding (1) -->
+      <!-- <input 
                 type="text" 
                 class="form-control"
                 (input)="onUpdateServerName($event)"> -->
 
-            <!-- Pendekatan data binding (2) -->
-            <input 
-                type="text" 
-                class="form-control"
-                [(ngModel)]="serverName">
-            <p class="mt-3">{{serverName}}</p>
+      <!-- Pendekatan data binding (2) -->
+      <input type="text" class="form-control" [(ngModel)]="serverName" />
+      <p class="mt-3">{{ serverName }}</p>
 
-            <button class="btn btn-primary mb-4" 
-            [disabled]="!allowNewServer"
-            (click)="onCreateServer()">Add Servers</button>
-            <!-- property binding <p [innerText]="allowNewServer"></p> -->
-            <p style="padding: 20px; border: 1px solid blue;
-            background-color: skyblue;">{{serverCreationStatus}}</p>
+      <button
+        class="btn btn-primary mb-4"
+        [disabled]="!allowNewServer"
+        (click)="onCreateServer()"
+      >
+        Add Servers
+      </button>
+      <!-- property binding <p [innerText]="allowNewServer"></p> -->
+      <p id="servers" *ngIf="serverCreated">
+        {{ serverCreationStatus }}
+      </p>
+      <!-- <ng-template id="servers" #noServer>No server was created!</ng-template> -->
+      <hr />
 
+      <app-server *ngFor="let server of servers"></app-server>
 
-            <label for="">Username</label>
-            <input 
-                type="text"
-                class="form-control"
-                [(ngModel)]="username">
-            <p class="mt-3">{{username}}</p>
-            
-            <button class="btn btn-primary mb-4" 
-                    [disabled]= ""
-                    (click)="onCreateUser()">Add User</button>
-    
-            <button class="btn btn-primary mb-4 ms-2" 
-                    [disabled] = "username === ''"
-                    (click)="username = ''">Reset User</button> 
+      <!-- Username -->
+      <label for="">Username</label>
+      <input type="text" class="form-control" [(ngModel)]="username" />
+      <p class="mt-3">{{ username }}</p>
 
-            <p style="padding: 20px; border: 1px solid blue;
-            background-color: skyblue;">{{usernameCreationStatus}}</p>
+      <button
+        class="btn btn-primary mb-4"
+        [disabled]=""
+        (click)="onCreateUser()"
+      >
+        Add User
+      </button>
 
-        </div>
+      <button
+        class="btn btn-primary mb-4 ms-2"
+        [disabled]="username === ''"
+        (click)="username = ''"
+      >
+        Reset User
+      </button>
+
+      <p id="servers" *ngIf="usernameCrated">
+        {{ usernameCreationStatus }}
+      </p>
+      <!-- End Username -->
     </div>
+  </div>
 </div>
-
-<!-- <app-server></app-server>
-<app-server></app-server> -->
